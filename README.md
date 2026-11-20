@@ -4,6 +4,12 @@
 无需构建，双击即可预览。v2 采用国际编辑部式视觉：黑曜石底色、骨白文字、火种橙强调色，
 巨幅显示字体与电影感概念海报。
 
+## 线上地址
+
+- 网站：https://guoguo52.github.io/xinghuo-opc-site/
+- 仓库：https://github.com/guoguo52/xinghuo-opc-site
+- 托管：GitHub Pages（免费静态托管），推送 `main` 分支后自动更新。
+
 ## 快速预览
 
 - 直接双击 `index.html` 用浏览器打开即可。

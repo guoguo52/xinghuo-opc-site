@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://guoguo52.github.io/xinghuo-opc-site/sitemap.xml

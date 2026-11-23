@@ -51,7 +51,7 @@
 .sub-hero[data-art="academy"]{--art:url("../img/gen-academy.jpg")}
 .sub-hero[data-art="matrix"]{--art:url("../img/gen-matrix.jpg")}
 .sub-hero[data-art="opc"]{--art:url("../img/gen-opc.jpg")}
-.sub-hero[data-art="works"]{--art:url("../img/hero-01.jpg")}
+.sub-hero[data-art="works"]{--art:url("../img/cases/case-08.jpg")}
 .sub-hero[data-art="tools"]{--art:url("../img/gen-workbench.jpg")}
 .sub-hero[data-art="about"]{--art:url("../img/gen-opc.jpg")}
 .sub-hero .wrap{position:relative;z-index:1}
@@ -177,12 +177,11 @@
 }
 .work-card:hover{border-color:var(--accent-line);transform:translateY(-4px)}
 .work-cover{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--bg-2)}
-.work-cover .art{
-  position:absolute;inset:0;display:block;padding:0;
-  background-size:cover;background-position:center 24%;background-repeat:no-repeat;
-  transition:transform 1s cubic-bezier(.22,1,.36,1);
+.work-cover img{
+  display:block;width:100%;height:100%;object-fit:cover;object-position:center;
+  filter:none;transition:transform 1s cubic-bezier(.22,1,.36,1);
 }
-.work-card:hover .work-cover .art{transform:scale(1.04)}
+.work-card:hover .work-cover img{transform:scale(1.04)}
 .art::before{
   content:none;
 }
@@ -500,6 +499,9 @@
 .featured-media img{
   display:block;width:100%;aspect-ratio:16/10;object-fit:cover;
   object-position:center 22%;filter:none;transition:transform 1s cubic-bezier(.22,1,.36,1);
+}
+.sub-hero[data-art="works"]::after{
+  filter:none;background-position:center;
 }
 .featured-media:hover img{transform:scale(1.025)}
 .featured-media-meta{

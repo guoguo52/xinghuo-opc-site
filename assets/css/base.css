@@ -552,15 +552,13 @@ button,input,select,textarea{font:inherit;color:inherit}
 .mosaic-item.feature{grid-column:span 2;grid-row:auto;aspect-ratio:32/10}
 .mosaic-item img{
   width:100%;height:100%;object-fit:cover;object-position:center 30%;
-  filter:grayscale(.4) contrast(1.08) brightness(.76) saturate(.88);
+  filter:none;
   transition:transform 1s cubic-bezier(.22,1,.36,1),filter .4s ease;
 }
-.mosaic-item:hover img{transform:scale(1.045);filter:grayscale(0) contrast(1.05) brightness(.86)}
+.mosaic-item:hover img{transform:scale(1.035);filter:none}
 .mosaic-item::after{
   content:"";position:absolute;inset:0;
-  background:
-    linear-gradient(180deg,transparent 38%,rgba(11,6,16,.92)),
-    linear-gradient(135deg,rgba(94,86,204,.2),rgba(198,81,192,.12));
+  background:linear-gradient(180deg,transparent 48%,rgba(11,6,16,.82) 100%);
   pointer-events:none;
 }
 .mosaic-cap{

@@ -174,9 +174,7 @@
 .work-card:hover .work-cover .art{transform:scale(1.04)}
 .art::before{
   content:"";position:absolute;inset:0;
-  background:
-    linear-gradient(180deg,rgba(11,6,16,.05) 22%,rgba(11,6,16,.9) 100%),
-    linear-gradient(135deg,rgba(94,86,204,.22),rgba(198,81,192,.12));
+  background:linear-gradient(180deg,rgba(11,6,16,0) 38%,rgba(11,6,16,.84) 100%);
 }
 .art-a{background-color:#3A0F05}
 .art-b{background-color:#10131D}

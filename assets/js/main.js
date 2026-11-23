@@ -134,7 +134,7 @@
     }
     var section = root.closest("section") || root;
     var track = root.querySelector("[data-track]");
-    var dots = section.querySelectorAll(".stage-dots [data-dot], .module-dots [data-dot]");
+    var dots = section.querySelectorAll(".stage-dots [data-dot], .stage-thumbs [data-dot], .module-dots [data-dot]");
     var countEl = section.querySelector(".stage-count, .slider-count");
     var progress = root.querySelector(".stage-progress i");
     var autoSeconds = parseFloat(root.getAttribute("data-auto") || "0");
@@ -142,6 +142,7 @@
     var index = 0;
     var timer = null;
     var paused = false;
+    var hoverZone = root.closest(".hero-visual") || root;
 
     function pad(n) {
       return String(n).padStart(2, "0");
@@ -213,23 +214,23 @@
       });
     });
 
-    root.addEventListener("mouseenter", function () {
+    hoverZone.addEventListener("mouseenter", function () {
       paused = true;
       resetTimer();
       if (progress) {
         progress.classList.remove("is-running");
       }
     });
-    root.addEventListener("mouseleave", function () {
+    hoverZone.addEventListener("mouseleave", function () {
       paused = false;
       restartProgress();
       resetTimer();
     });
-    root.addEventListener("focusin", function () {
+    hoverZone.addEventListener("focusin", function () {
       paused = true;
       resetTimer();
     });
-    root.addEventListener("focusout", function () {
+    hoverZone.addEventListener("focusout", function () {
       paused = false;
       resetTimer();
     });

@@ -591,3 +591,255 @@
   .works-grid{grid-template-columns:1fr}
   .works-grid .work-card:nth-child(n){grid-column:auto}
 }
+
+/* ---------- 首页功能总览 ---------- */
+.portal-section{
+  padding:104px 0;background:var(--bg-1);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  scroll-margin-top:calc(var(--nav-h) + 24px);
+}
+.portal-head{max-width:720px;margin-bottom:42px}
+.portal-head .h2{margin-top:0;max-width:12ch}
+.portal-head p{max-width:56ch;margin-top:18px;color:var(--muted)}
+.portal-grid{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  grid-auto-flow:dense;gap:1px;background:var(--line);border:1px solid var(--line);
+}
+.portal-card{
+  position:relative;display:flex;flex-direction:column;min-height:220px;
+  overflow:hidden;padding:26px;background:var(--bg-1);
+  transition:background .3s ease,color .3s ease;
+}
+.portal-card::before{
+  content:"";position:absolute;left:0;top:0;width:2px;height:0;
+  background:var(--accent);transition:height .35s ease;
+}
+.portal-card:hover{background:var(--bg-2)}
+.portal-card:hover::before{height:100%}
+.portal-label{
+  font-family:var(--font-mono);font-size:9.5px;letter-spacing:.16em;
+  color:var(--accent);text-transform:uppercase;
+}
+.portal-card h3{
+  margin-top:22px;font-size:26px;line-height:1.08;letter-spacing:-.025em;font-weight:800;
+}
+.portal-card p{margin-top:12px;color:var(--muted);font-size:13px;line-height:1.7;max-width:30ch}
+.portal-arrow{
+  margin-top:auto;padding-top:22px;font-family:var(--font-mono);
+  font-size:16px;color:var(--accent);transition:transform .3s ease;
+}
+.portal-card:hover .portal-arrow{transform:translate(4px,-4px)}
+.portal-feature{
+  grid-column:span 2;grid-row:span 2;min-height:440px;padding:0;
+  background:var(--bg-2);
+}
+.portal-feature:hover{background:var(--bg-2)}
+.portal-feature-copy{padding:32px 32px 24px}
+.portal-feature-copy h3{font-size:clamp(34px,4vw,58px);max-width:8ch}
+.portal-feature-media{margin-top:auto;overflow:hidden;border-top:1px solid var(--line)}
+.portal-feature-media img{
+  width:100%;aspect-ratio:16/8;object-fit:cover;object-position:center 32%;
+  filter:none;transition:transform .9s cubic-bezier(.22,1,.36,1);
+}
+.portal-feature:hover .portal-feature-media img{transform:scale(1.025)}
+.portal-opc{
+  grid-column:span 2;display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,.72fr);
+  padding:0;min-height:220px;
+}
+.portal-opc-copy{padding:26px;display:flex;flex-direction:column}
+.portal-opc-media{overflow:hidden;border-left:1px solid var(--line)}
+.portal-opc-media img{
+  width:100%;height:100%;object-fit:cover;object-position:center;
+  filter:none;transition:transform .9s cubic-bezier(.22,1,.36,1);
+}
+.portal-opc:hover .portal-opc-media img{transform:scale(1.025)}
+.portal-card:nth-child(2){background:#F3EAF6}
+.portal-card:nth-child(3){background:#EEE8F8}
+.portal-card:nth-child(6){background:#F3EAF6}
+
+/* ---------- 资讯中心 ---------- */
+.sub-hero[data-art="insights"]{--art:url("../img/cases/case-06.jpg")}
+.sub-hero[data-art="opportunities"]{--art:url("../img/cases/case-05.jpg")}
+.sub-hero[data-art="insights"]::after,.sub-hero[data-art="opportunities"]::after{
+  filter:none;background-position:center;
+}
+.news-hub{padding-top:92px}
+.news-lead-grid{
+  display:grid;grid-template-columns:minmax(0,1.65fr) minmax(280px,.75fr);
+  gap:44px;align-items:start;margin-bottom:72px;
+}
+.news-feature{display:block;border:1px solid var(--line);background:var(--bg-1)}
+.news-feature-media{overflow:hidden}
+.news-feature-media img{
+  width:100%;aspect-ratio:16/9;object-fit:cover;object-position:center;
+  filter:none;transition:transform .9s cubic-bezier(.22,1,.36,1);
+}
+.news-feature:hover .news-feature-media img{transform:scale(1.025)}
+.news-feature-copy{padding:28px}
+.news-feature-copy h2{margin-top:14px;font-size:clamp(30px,3.5vw,48px);line-height:1.06;letter-spacing:-.03em}
+.news-feature-copy p{margin-top:14px;color:var(--muted);max-width:58ch;font-size:14px}
+.news-type{
+  font-family:var(--font-mono);font-size:10px;letter-spacing:.16em;
+  color:var(--accent);text-transform:uppercase;
+}
+.news-brief{
+  border-top:1px solid var(--line-strong);
+}
+.news-brief-title{
+  padding:20px 0 14px;font-family:var(--font-mono);font-size:10px;
+  letter-spacing:.16em;color:var(--muted);text-transform:uppercase;
+}
+.news-brief a{
+  display:grid;grid-template-columns:1fr auto;gap:8px 16px;
+  padding:20px 0;border-top:1px solid var(--line);transition:color .25s ease;
+}
+.news-brief a:hover{color:var(--accent)}
+.news-brief a span{font-size:17px;line-height:1.35;font-weight:700}
+.news-brief a small{grid-column:1;font-family:var(--font-mono);font-size:9.5px;color:var(--muted)}
+.news-brief a i{grid-column:2;grid-row:1/3;font-style:normal;color:var(--accent)}
+.filter-count{
+  margin-left:auto;font-family:var(--font-mono);font-size:10px;
+  letter-spacing:.12em;color:var(--muted);white-space:nowrap;
+}
+.news-grid{
+  display:grid;grid-template-columns:repeat(12,1fr);gap:12px;
+  grid-auto-flow:dense;align-items:start;
+  scroll-margin-top:calc(var(--nav-h) + 24px);
+}
+.news-card{
+  display:flex;flex-direction:column;overflow:hidden;
+  grid-column:span 4;border:1px solid var(--line);background:var(--bg-1);
+  transition:border-color .3s ease,transform .3s ease;
+}
+.news-card:nth-child(1){grid-column:span 7}
+.news-card:nth-child(2){grid-column:span 5}
+.news-card:nth-child(3){grid-column:span 4}
+.news-card:nth-child(4){grid-column:span 8}
+.news-card:nth-child(5),.news-card:nth-child(6){grid-column:span 6}
+.news-card:hover{border-color:var(--accent-line);transform:translateY(-3px)}
+.news-card-media{overflow:hidden;background:var(--bg-2)}
+.news-card-media img{
+  width:100%;aspect-ratio:16/10;object-fit:cover;object-position:center;
+  filter:none;transition:transform .8s cubic-bezier(.22,1,.36,1);
+}
+.news-card:hover .news-card-media img{transform:scale(1.025)}
+.news-card-copy{padding:22px;display:flex;flex-direction:column;flex:1}
+.news-card-copy h3{margin-top:12px;font-size:23px;line-height:1.22;letter-spacing:-.02em}
+.news-card-copy p{margin-top:10px;color:var(--muted);font-size:12.5px;line-height:1.7}
+.news-card-copy .news-card-foot{
+  margin-top:auto;padding-top:22px;display:flex;align-items:center;
+  justify-content:space-between;gap:12px;font-family:var(--font-mono);
+  font-size:9.5px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;
+}
+.news-card-foot i{font-style:normal;font-size:14px;color:var(--accent)}
+
+/* ---------- 找事广场 ---------- */
+.opportunity-intro{
+  display:grid;grid-template-columns:minmax(0,1.3fr) repeat(3,minmax(0,.55fr));
+  gap:1px;border:1px solid var(--line);background:var(--line);margin-bottom:54px;
+}
+.opportunity-intro > div{padding:24px;background:var(--bg-1)}
+.opportunity-intro h2{font-size:clamp(30px,3.2vw,46px);line-height:1.04;letter-spacing:-.035em;max-width:none}
+.opportunity-intro p{margin-top:12px;color:var(--muted);font-size:13px;max-width:34ch}
+.opportunity-metric{
+  display:flex;flex-direction:column;justify-content:space-between;
+  font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;color:var(--muted);
+}
+.opportunity-metric b{
+  font-family:var(--font-ui);font-size:20px;line-height:1.2;
+  letter-spacing:-.02em;color:var(--ink);
+}
+.opportunity-grid{
+  display:grid;grid-template-columns:repeat(12,1fr);gap:12px;
+  grid-auto-flow:dense;align-items:stretch;
+}
+.opportunity-card{
+  grid-column:span 6;display:flex;flex-direction:column;overflow:hidden;
+  padding:26px;border:1px solid var(--line);background:var(--bg-1);
+  transition:border-color .3s ease,transform .3s ease,background .3s ease;
+}
+.opportunity-card:nth-child(1){grid-column:span 7;padding:0}
+.opportunity-card:nth-child(2){grid-column:span 5}
+.opportunity-card:nth-child(3){grid-column:span 4}
+.opportunity-card:nth-child(4){grid-column:span 8}
+.opportunity-card:nth-child(5),.opportunity-card:nth-child(6){grid-column:span 6}
+.opportunity-card:hover{border-color:var(--accent-line);transform:translateY(-3px)}
+.opportunity-card-media{overflow:hidden;border-bottom:1px solid var(--line)}
+.opportunity-card-media img{
+  width:100%;aspect-ratio:16/8;object-fit:cover;object-position:center;
+  filter:none;transition:transform .9s cubic-bezier(.22,1,.36,1);
+}
+.opportunity-card:hover .opportunity-card-media img{transform:scale(1.025)}
+.opportunity-card-body{padding:26px}
+.opportunity-card:not(:first-child) .opportunity-card-body{padding:0;display:flex;flex-direction:column;flex:1}
+.opportunity-top{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  font-family:var(--font-mono);font-size:9.5px;letter-spacing:.13em;
+  color:var(--muted);text-transform:uppercase;
+}
+.opportunity-top span:first-child{color:var(--accent)}
+.opportunity-card h3{margin-top:20px;font-size:clamp(23px,2.5vw,36px);line-height:1.12;letter-spacing:-.025em}
+.opportunity-card p{margin-top:14px;color:var(--muted);font-size:13px;line-height:1.75;max-width:58ch}
+.opportunity-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:22px}
+.opportunity-tags span{
+  padding:6px 9px;border:1px solid var(--line-strong);
+  font-family:var(--font-mono);font-size:9px;letter-spacing:.08em;color:var(--ink-2);
+}
+.opportunity-foot{
+  margin-top:auto;padding-top:24px;display:flex;align-items:flex-end;
+  justify-content:space-between;gap:18px;border-top:1px solid var(--line);
+}
+.opportunity-card:not(:first-child) .opportunity-foot{margin-top:24px}
+.opportunity-foot small{
+  display:block;font-family:var(--font-mono);font-size:9px;
+  letter-spacing:.1em;color:var(--muted);text-transform:uppercase;
+}
+.opportunity-foot a{
+  display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;
+  color:var(--accent);white-space:nowrap;
+}
+.opportunity-foot a span{transition:transform .25s ease}
+.opportunity-foot a:hover span{transform:translate(3px,-3px)}
+.opportunity-guide{
+  margin-top:64px;display:grid;grid-template-columns:repeat(4,1fr);
+  border:1px solid var(--line);background:var(--line);gap:1px;
+}
+.opportunity-guide > div{padding:24px;background:var(--bg-1)}
+.opportunity-guide b{display:block;font-size:16px;line-height:1.3}
+.opportunity-guide span{
+  display:block;margin-top:10px;font-family:var(--font-mono);font-size:9px;
+  letter-spacing:.1em;color:var(--muted);text-transform:uppercase;
+}
+.opportunity-guide p{margin-top:10px;color:var(--muted);font-size:12px;line-height:1.7}
+
+[data-filter-item].is-filtered-out{display:none}
+
+@media (max-width:1024px){
+  .portal-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .portal-feature{grid-column:span 2;grid-row:auto;min-height:0}
+  .portal-opc{grid-column:span 2}
+  .news-lead-grid{grid-template-columns:1fr;gap:32px}
+  .news-card:nth-child(n){grid-column:span 6}
+  .opportunity-intro{grid-template-columns:1fr 1fr}
+  .opportunity-card:nth-child(n){grid-column:span 6}
+  .opportunity-card:nth-child(1){grid-column:span 12}
+  .opportunity-guide{grid-template-columns:1fr 1fr}
+}
+@media (max-width:820px){
+  .portal-section{padding:78px 0}
+  .news-hub{padding-top:68px}
+  .news-grid{grid-template-columns:1fr}
+  .news-card:nth-child(n){grid-column:auto}
+  .opportunity-grid{grid-template-columns:1fr}
+  .opportunity-card:nth-child(n){grid-column:auto}
+  .opportunity-card:nth-child(1){grid-column:auto}
+}
+@media (max-width:640px){
+  .portal-grid{grid-template-columns:1fr}
+  .portal-feature,.portal-opc{grid-column:auto;grid-template-columns:1fr}
+  .portal-opc-media{border-left:0;border-top:1px solid var(--line)}
+  .portal-opc-media img{aspect-ratio:16/10}
+  .opportunity-intro{grid-template-columns:1fr}
+  .opportunity-guide{grid-template-columns:1fr}
+  .filter-count{width:100%;margin-left:0;padding-top:10px;border-top:1px solid var(--line)}
+}

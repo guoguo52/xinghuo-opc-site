@@ -44,6 +44,113 @@
     });
   }
 
+  /* ---------- 首页功能切入窗口 ---------- */
+  var homeLink = document.querySelector('.main-nav > a[href="index.html"]');
+  if (homeLink) {
+    var homeMenu = document.createElement("div");
+    homeMenu.className = "nav-home-menu";
+    homeMenu.innerHTML =
+      '<button class="nav-home-trigger' + (homeLink.classList.contains("active") ? " active" : "") + '" type="button" aria-expanded="false" aria-controls="home-mega-panel" aria-haspopup="true">' +
+        '<span>首页</span><span class="nav-chev" aria-hidden="true"></span>' +
+      '</button>' +
+      '<div class="home-mega" id="home-mega-panel" aria-label="首页功能入口" aria-hidden="true">' +
+        '<a class="home-mega-feature" href="index.html#portals">' +
+          '<div class="home-mega-feature-media"><img src="assets/img/cases/case-08.jpg" alt="液态星火概念人像"></div>' +
+          '<div class="home-mega-feature-copy">' +
+            '<span class="home-mega-kicker">ONE PLATFORM / EIGHT ENTRIES</span>' +
+            '<h2>从灵感到项目合作</h2>' +
+            '<p>按你当下要做的事进入，不必先理解整套系统。</p>' +
+          '</div>' +
+          '<span class="home-mega-feature-link"><span>查看首页功能总览</span><span>↗</span></span>' +
+        '</a>' +
+        '<div class="home-mega-col">' +
+          '<h3>生产与工具</h3>' +
+          '<a class="mega-link" href="workbench.html"><strong>AI 短视频工作台</strong><small>剧本、角色、成片、配音、剪辑</small><i>↗</i></a>' +
+          '<a class="mega-link" href="tools.html"><strong>AI 生产工具</strong><small>按创作阶段找到七类工具</small><i>↗</i></a>' +
+          '<a class="mega-link" href="academy.html"><strong>星火学院</strong><small>从课程、实训到作品交付</small><i>↗</i></a>' +
+          '<a class="mega-link" href="distribution.html"><strong>矩阵分销</strong><small>内容切片、账号分发与收益回流</small><i>↗</i></a>' +
+        '</div>' +
+        '<div class="home-mega-col">' +
+          '<h3>社区与机会</h3>' +
+          '<a class="mega-link" href="opc.html"><strong>星火 OPC</strong><small>社区、资源与产业孵化</small><i>↗</i></a>' +
+          '<a class="mega-link" href="works.html"><strong>作品案例</strong><small>查看平台与创作者代表作品</small><i>↗</i></a>' +
+          '<a class="mega-link" href="insights.html"><strong>资讯中心</strong><small>行业观察、方法教程与社区动态</small><i>↗</i></a>' +
+          '<a class="mega-link" href="opportunities.html"><strong>找事广场</strong><small>找项目、找服务、找创作伙伴</small><i>↗</i></a>' +
+        '</div>' +
+      '</div>';
+    homeLink.replaceWith(homeMenu);
+
+    var homeTrigger = homeMenu.querySelector(".nav-home-trigger");
+    var homePanel = homeMenu.querySelector(".home-mega");
+    var closeTimer = null;
+    var pinned = false;
+
+    function setHomeMenu(open) {
+      homeMenu.classList.toggle("is-open", open);
+      homeTrigger.setAttribute("aria-expanded", open ? "true" : "false");
+      homePanel.setAttribute("aria-hidden", open ? "false" : "true");
+    }
+
+    homeTrigger.addEventListener("click", function (event) {
+      event.stopPropagation();
+      pinned = true;
+      setHomeMenu(true);
+    });
+    homeMenu.addEventListener("pointerenter", function () {
+      if (closeTimer) {
+        clearTimeout(closeTimer);
+        closeTimer = null;
+      }
+      setHomeMenu(true);
+    });
+    homeMenu.addEventListener("pointerleave", function () {
+      if (pinned) {
+        return;
+      }
+      closeTimer = setTimeout(function () {
+        setHomeMenu(false);
+      }, 120);
+    });
+    homeMenu.addEventListener("focusin", function () {
+      setHomeMenu(true);
+    });
+    homeMenu.addEventListener("focusout", function (event) {
+      if (!pinned && !homeMenu.contains(event.relatedTarget)) {
+        setHomeMenu(false);
+      }
+    });
+    homeMenu.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        pinned = false;
+        setHomeMenu(false);
+      });
+    });
+    document.addEventListener("click", function (event) {
+      if (!homeMenu.contains(event.target)) {
+        pinned = false;
+        setHomeMenu(false);
+      }
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && homeMenu.classList.contains("is-open")) {
+        pinned = false;
+        homeTrigger.focus();
+        setHomeMenu(false);
+      }
+    });
+  }
+
+  /* 移动端补齐资讯与找事入口 */
+  if (mobileMenu) {
+    var mobileAbout = mobileMenu.querySelector('a[href="about.html"]');
+    if (mobileAbout) {
+      mobileAbout.insertAdjacentHTML(
+        "beforebegin",
+        '<a href="insights.html">资讯中心</a><a href="opportunities.html">找事广场</a>'
+      );
+    }
+  }
+
   /* ---------- 滚动进场 ---------- */
   var reveals = document.querySelectorAll(".reveal");
   if (reduced || !("IntersectionObserver" in window)) {
@@ -301,6 +408,39 @@
       });
     });
   }
+
+  /* ---------- 资讯 / 找事通用筛选 ---------- */
+  document.querySelectorAll("[data-filter-bar]").forEach(function (bar) {
+    var filterRoot = bar.closest("[data-filter-scope]") || bar.parentElement;
+    var filterItems = filterRoot.querySelectorAll("[data-filter-item]");
+    var filterButtons = bar.querySelectorAll("[data-filter]");
+    var filterCount = filterRoot.querySelector("[data-filter-count]");
+
+    function applyFilter(key) {
+      var visible = 0;
+      filterItems.forEach(function (item) {
+        var match = key === "all" || item.getAttribute("data-cat") === key;
+        item.classList.toggle("is-filtered-out", !match);
+        item.setAttribute("aria-hidden", match ? "false" : "true");
+        if (match) {
+          visible += 1;
+        }
+      });
+      if (filterCount) {
+        filterCount.textContent = String(visible).padStart(2, "0") + " ITEMS";
+      }
+    }
+
+    filterButtons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        filterButtons.forEach(function (item) {
+          item.classList.remove("on");
+        });
+        button.classList.add("on");
+        applyFilter(button.getAttribute("data-filter"));
+      });
+    });
+  });
 
   /* ---------- 联系表单 ---------- */
   var contactForm = document.getElementById("contact-form");

@@ -389,6 +389,100 @@
 
   document.querySelectorAll("[data-carousel]").forEach(initCarousel);
 
+  /* ---------- 园区影像图集 ---------- */
+  var galleryItems = Array.prototype.slice.call(document.querySelectorAll("[data-park-lightbox]"));
+  var galleryDialog = document.getElementById("park-lightbox");
+  if (galleryDialog && galleryItems.length) {
+    var galleryImage = galleryDialog.querySelector("[data-lightbox-image]");
+    var galleryCategory = galleryDialog.querySelector("[data-lightbox-category]");
+    var galleryTitle = galleryDialog.querySelector("[data-lightbox-title]");
+    var galleryCaption = galleryDialog.querySelector("[data-lightbox-caption]");
+    var galleryCount = galleryDialog.querySelector("[data-lightbox-count]");
+    var galleryClose = galleryDialog.querySelector("[data-lightbox-close]");
+    var galleryPrev = galleryDialog.querySelector("[data-lightbox-prev]");
+    var galleryNext = galleryDialog.querySelector("[data-lightbox-next]");
+    var galleryIndex = 0;
+    var galleryTrigger = null;
+
+    function padNumber(value) {
+      return String(value).padStart(2, "0");
+    }
+
+    function renderGallery(index) {
+      galleryIndex = (index + galleryItems.length) % galleryItems.length;
+      var item = galleryItems[galleryIndex];
+      galleryImage.src = item.getAttribute("data-src");
+      galleryImage.alt = item.getAttribute("data-alt") || "";
+      galleryCategory.textContent = item.getAttribute("data-category") || "园区场景";
+      galleryTitle.textContent = item.getAttribute("data-title") || "";
+      galleryCaption.textContent = item.getAttribute("data-caption") || "";
+      galleryCount.textContent =
+        padNumber(galleryIndex + 1) + " / " + padNumber(galleryItems.length);
+    }
+
+    function openGallery(index, trigger) {
+      renderGallery(index);
+      galleryTrigger = trigger || null;
+      if (typeof galleryDialog.showModal === "function") {
+        if (!galleryDialog.open) {
+          galleryDialog.showModal();
+        }
+      } else {
+        galleryDialog.setAttribute("open", "");
+      }
+      galleryClose.focus();
+    }
+
+    function closeGallery() {
+      if (galleryDialog.open && typeof galleryDialog.close === "function") {
+        galleryDialog.close();
+      } else {
+        galleryDialog.removeAttribute("open");
+      }
+      if (galleryTrigger) {
+        galleryTrigger.focus();
+      }
+    }
+
+    galleryItems.forEach(function (item, index) {
+      item.addEventListener("click", function () {
+        openGallery(index, item);
+      });
+    });
+    var galleryOpenButton = document.querySelector("[data-gallery-open]");
+    if (galleryOpenButton) {
+      galleryOpenButton.addEventListener("click", function () {
+        openGallery(0, galleryOpenButton);
+      });
+    }
+    galleryClose.addEventListener("click", closeGallery);
+    galleryPrev.addEventListener("click", function () {
+      renderGallery(galleryIndex - 1);
+    });
+    galleryNext.addEventListener("click", function () {
+      renderGallery(galleryIndex + 1);
+    });
+    galleryDialog.addEventListener("click", function (event) {
+      if (event.target === galleryDialog) {
+        closeGallery();
+      }
+    });
+    galleryDialog.addEventListener("cancel", function (event) {
+      event.preventDefault();
+      closeGallery();
+    });
+    galleryDialog.addEventListener("keydown", function (event) {
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        renderGallery(galleryIndex - 1);
+      }
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        renderGallery(galleryIndex + 1);
+      }
+    });
+  }
+
   /* ---------- 作品筛选 ---------- */
   var filterBar = document.querySelector(".filter-bar");
   if (filterBar) {

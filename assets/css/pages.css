@@ -736,6 +736,114 @@
 }
 .community-news-item:hover i{transform:translate(4px,-4px)}
 
+/* ---------- 园区影像档案 ---------- */
+.park-gallery{
+  background:var(--bg-1);border-bottom:1px solid var(--line);
+}
+.park-gallery-top{
+  display:grid;grid-template-columns:minmax(300px,.72fr) minmax(0,1.55fr);
+  gap:44px;align-items:stretch;margin-bottom:12px;
+}
+.park-gallery-copy{display:flex;flex-direction:column;padding:18px 0}
+.park-kicker{
+  font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;
+  color:var(--accent);text-transform:uppercase;
+}
+.park-gallery-copy .h2{margin-top:16px;max-width:9ch;font-size:clamp(40px,4.8vw,70px)}
+.park-gallery-copy p{
+  margin-top:22px;max-width:36ch;color:var(--muted);
+  font-size:13.5px;line-height:1.8;
+}
+.park-gallery-copy .btn{margin-top:auto;align-self:flex-start}
+.park-photo{
+  appearance:none;width:100%;border:0;padding:0;background:transparent;
+  color:inherit;text-align:left;cursor:pointer;
+}
+.park-photo-frame{
+  display:block;overflow:hidden;background:var(--bg-2);
+  border:1px solid var(--line-strong);border-bottom:0;
+}
+.park-photo-main .park-photo-frame img{aspect-ratio:16/10}
+.park-gallery-grid .park-photo-frame img{aspect-ratio:4/3}
+.park-photo-frame img{
+  display:block;width:100%;height:100%;object-fit:cover;object-position:center;
+  filter:none;transition:transform .8s cubic-bezier(.22,1,.36,1);
+}
+.park-photo:hover .park-photo-frame img,
+.park-photo:focus-visible .park-photo-frame img{transform:scale(1.025)}
+.park-photo-meta{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:14px 16px;border:1px solid var(--line-strong);background:var(--bg-1);
+}
+.park-photo-meta > span:first-child{min-width:0}
+.park-photo-meta small{
+  display:block;font-family:var(--font-mono);font-size:9px;
+  letter-spacing:.12em;color:var(--accent);text-transform:uppercase;
+}
+.park-photo-meta b{
+  display:block;margin-top:6px;font-size:14px;line-height:1.35;
+  font-weight:700;letter-spacing:-.01em;
+}
+.park-photo-meta > span:last-child{
+  flex:none;font-family:var(--font-mono);font-size:8.5px;
+  letter-spacing:.1em;color:var(--muted);text-transform:uppercase;
+}
+.park-gallery-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+
+.park-lightbox{
+  width:min(1120px,calc(100vw - 40px));max-width:none;max-height:calc(100dvh - 40px);
+  border:0;padding:0;background:transparent;color:var(--ink);
+}
+.park-lightbox::backdrop{
+  background:rgba(23,15,29,.86);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+}
+.park-lightbox[open]{animation:park-lightbox-in .3s cubic-bezier(.22,1,.36,1) both}
+@keyframes park-lightbox-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.park-lightbox-shell{
+  position:relative;background:var(--bg);border:1px solid rgba(247,240,249,.2);
+}
+.park-lightbox-close{
+  position:absolute;top:12px;right:12px;z-index:2;width:38px;height:38px;
+  display:grid;place-items:center;border:1px solid rgba(247,240,249,.28);
+  background:rgba(23,15,29,.78);color:var(--on-dark);font-size:24px;
+  line-height:1;cursor:pointer;
+}
+.park-lightbox figure{margin:0}
+.park-lightbox-media{
+  display:grid;place-items:center;min-height:280px;
+  padding:24px;background:var(--dark);
+}
+.park-lightbox-media img{
+  display:block;width:100%;max-height:calc(100dvh - 250px);
+  object-fit:contain;
+}
+.park-lightbox figcaption{
+  display:grid;grid-template-columns:minmax(0,1fr) auto;
+  gap:6px 28px;padding:22px 24px;border-top:1px solid var(--line);
+}
+.park-lightbox-category{
+  grid-column:1;font-family:var(--font-mono);font-size:9.5px;
+  letter-spacing:.13em;color:var(--accent);text-transform:uppercase;
+}
+.park-lightbox figcaption h3{
+  grid-column:1;font-size:24px;line-height:1.2;letter-spacing:-.02em;
+}
+.park-lightbox figcaption p{
+  grid-column:1;margin-top:4px;max-width:70ch;color:var(--muted);font-size:13px;
+}
+.park-lightbox-nav{
+  grid-column:2;grid-row:1/4;display:flex;align-items:center;align-self:center;gap:12px;
+}
+.park-lightbox-nav button{
+  width:38px;height:38px;border:1px solid var(--line-strong);
+  background:transparent;color:var(--ink);cursor:pointer;
+}
+.park-lightbox-nav span{
+  min-width:58px;text-align:center;font-family:var(--font-mono);
+  font-size:9.5px;letter-spacing:.1em;color:var(--muted);
+}
+
 /* ---------- 资讯中心 ---------- */
 .sub-hero[data-art="insights"]{--art:url("../img/cases/case-06.jpg")}
 .sub-hero[data-art="opportunities"]{--art:url("../img/cases/case-05.jpg")}
@@ -901,6 +1009,9 @@
   .portal-opc{grid-column:span 2}
   .community-news-grid{grid-template-columns:1fr;gap:32px}
   .community-news-list{grid-template-rows:none}
+  .park-gallery-top{grid-template-columns:1fr;gap:28px}
+  .park-gallery-copy{padding:0}
+  .park-gallery-copy .btn{margin-top:26px}
   .news-lead-grid{grid-template-columns:1fr;gap:32px}
   .news-card:nth-child(n){grid-column:span 6}
   .opportunity-intro{grid-template-columns:1fr 1fr}
@@ -913,6 +1024,11 @@
   .community-lead{grid-template-columns:1fr}
   .community-lead-media{border-right:0;border-bottom:1px solid var(--line)}
   .community-lead-media img{min-height:0;aspect-ratio:16/10}
+  .park-gallery-grid{grid-template-columns:1fr 1fr}
+  .park-gallery-grid .park-photo:last-child{grid-column:span 2}
+  .park-gallery-grid .park-photo:last-child .park-photo-frame img{aspect-ratio:16/9}
+  .park-lightbox figcaption{grid-template-columns:1fr}
+  .park-lightbox-nav{grid-column:1;grid-row:auto;margin-top:16px;justify-content:flex-start}
   .news-hub{padding-top:68px}
   .news-grid{grid-template-columns:1fr}
   .news-card:nth-child(n){grid-column:auto}
@@ -930,6 +1046,14 @@
   .community-news-head{align-items:flex-start}
   .community-lead-copy{padding:24px}
   .community-news-item h3{font-size:18px}
+  .park-gallery-grid{grid-template-columns:1fr}
+  .park-gallery-grid .park-photo:last-child{grid-column:auto}
+  .park-gallery-grid .park-photo:last-child .park-photo-frame img{aspect-ratio:4/3}
+  .park-lightbox{width:calc(100vw - 20px);max-height:calc(100dvh - 20px)}
+  .park-lightbox-media{padding:14px;min-height:220px}
+  .park-lightbox-media img{max-height:calc(100dvh - 300px)}
+  .park-lightbox figcaption{padding:18px}
+  .park-lightbox figcaption h3{font-size:21px}
   .opportunity-intro{grid-template-columns:1fr}
   .opportunity-guide{grid-template-columns:1fr}
   .filter-count{width:100%;margin-left:0;padding-top:10px;border-top:1px solid var(--line)}

@@ -418,6 +418,7 @@
 
     function applyFilter(key) {
       var visible = 0;
+      filterRoot.setAttribute("data-active-filter", key);
       filterItems.forEach(function (item) {
         var match = key === "all" || item.getAttribute("data-cat") === key;
         item.classList.toggle("is-filtered-out", !match);
@@ -440,6 +441,20 @@
         applyFilter(button.getAttribute("data-filter"));
       });
     });
+
+    var requestedFilter = new URLSearchParams(window.location.search).get("filter");
+    if (requestedFilter) {
+      var requestedButton = Array.prototype.find.call(filterButtons, function (button) {
+        return button.getAttribute("data-filter") === requestedFilter;
+      });
+      if (requestedButton) {
+        filterButtons.forEach(function (button) {
+          button.classList.remove("on");
+        });
+        requestedButton.classList.add("on");
+        applyFilter(requestedFilter);
+      }
+    }
   });
 
   /* ---------- 联系表单 ---------- */

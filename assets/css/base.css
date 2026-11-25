@@ -33,6 +33,7 @@
   --maxw:1440px;
   --pad:40px;
   --r:0px;
+  --media-r:14px;
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
@@ -872,3 +873,13 @@ body::after{opacity:.018}
 .footer-col a:hover{color:var(--accent)}
 .footer-bottom{color:var(--muted)}
 .footer-word{-webkit-text-stroke:1px rgba(133,83,199,.2)}
+
+/* ---------- 媒体圆角（图片展示统一 14px，结构与文字卡片保持直角） ---------- */
+.hero-stage,
+.stage-thumb,
+.home-mega-feature-media,
+.tools-poster,
+.cover-card,
+.mosaic-item{
+  border-radius:var(--media-r);
+}

@@ -844,6 +844,30 @@
   font-size:9.5px;letter-spacing:.1em;color:var(--muted);
 }
 
+/* ---------- 媒体圆角（图片展示统一 14px，结构与文字卡片保持直角） ---------- */
+.portal-feature,
+.portal-opc,
+.community-lead,
+.park-photo,
+.work-card,
+.featured-media,
+.news-feature,
+.news-card,
+.opportunity-card{
+  border-radius:var(--media-r);
+}
+.community-lead,
+.park-photo,
+.news-feature,
+.news-card,
+.opportunity-card{
+  overflow:hidden;
+}
+.park-lightbox-shell{
+  border-radius:var(--media-r);
+  overflow:hidden;
+}
+
 /* ---------- 资讯中心 ---------- */
 .sub-hero[data-art="insights"]{--art:url("../img/cases/case-06.jpg")}
 .sub-hero[data-art="opportunities"]{--art:url("../img/cases/case-05.jpg")}
